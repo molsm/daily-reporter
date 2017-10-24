@@ -9,10 +9,10 @@
             "email": "maris9229@gmail.com"
         }
     ],
-    "minimum-stability": "stable",
+    "minimum-stability": "dev",
     "require": {
         "php": "^7.0",
-        "molsm/daily-reporter-core": "^0.0.3"
+        "molsm/daily-reporter-core": "dev-master"
     },
     "autoload": {
         "psr-4": {
