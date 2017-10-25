@@ -16,17 +16,6 @@ class ListOfTodayDoneTickets extends AbstractSection
     protected $sectionName = 'Done Today';
 
     /**
-     * @var Client
-     */
-    private $client;
-
-    public function __construct(ContainerInterface $container, Client $client)
-    {
-        parent::__construct($container);
-        $this->client = $client;
-    }
-
-    /**
      * @return array
      */
     public function process(): array

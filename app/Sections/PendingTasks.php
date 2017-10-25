@@ -4,9 +4,7 @@ namespace App\Sections;
 
 use DailyReporter\Exception\CanNotRetrieveDataFromJira;
 use DailyReporter\Helper\Jira;
-use DailyReporter\Jira\Client;
 use DailyReporter\Sections\AbstractSection as Section;
-use Psr\Container\ContainerInterface;
 use DailyReporter\Validator\JiraTicket as JiraTicketValidator;
 
 class PendingTasks extends Section
@@ -15,22 +13,6 @@ class PendingTasks extends Section
      * @var string
      */
     protected $sectionName = 'Pending tasks';
-
-    /**
-     * @var Client
-     */
-    private $client;
-
-    /**
-     * PendingTasks constructor.
-     * @param ContainerInterface $container
-     * @param Client $client
-     */
-    public function __construct(ContainerInterface $container, Client $client)
-    {
-        parent::__construct($container);
-        $this->client = $client;
-    }
 
     /**
      * @return array
