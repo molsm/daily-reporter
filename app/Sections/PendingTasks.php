@@ -37,7 +37,6 @@ class PendingTasks extends Section
      */
     public function process(): array
     {
-        $data = [];
         $continue = true;
 
         if ($this->io->confirm('Fill pending tickets?', false)) {
@@ -51,20 +50,20 @@ class PendingTasks extends Section
                     continue;
                 }
 
-                $data[] = [
+                $this->data[] = [
                     'ticketId' => $ticket['key'],
                     'ticketName' => $ticket['fields']['summary'],
                     'ticketUrl' => Jira::getTicketUrl($ticket['key'])
                 ];
 
                 $this->io->title('Current pending tickets');
-                $this->showData($data);
+                $this->showData($this->data);
 
                 $continue = $this->io->confirm('Add more?', true);
             }
         }
 
-        return ['pendingTasks' => $data];
+        return ['pendingTasks' => $this->data];
     }
 
     /**

@@ -1,57 +1,67 @@
-<div>
-    <p>Hello team,</p>
-
-    <div>
-        <strong>Summary of critical issues:</strong>
-        <p>
-            {% if summaryOfCriticalIssues is empty %}
-                n/a
-            {% else %}
-                {% for issue in summaryOfCriticalIssues %}
-                    <b>{{ loop.index }}. {{ issue.ticketId }}</b> - {{ issue.ticketName }} (<a href="{{ issueticketUrl }}">{{ issue.ticketUrl }}</a>)<br>
-                    {% if issue.comment %}
-                        {{ issue.comment }}
+<html>
+    <head>
+        <style>
+            body {
+                font-family: SansSerif;
+            }
+        </style>
+    </head>
+    <body>
+        <div>
+            <p>Hello team,</p>
+            <div>
+                <strong>Summary of critical issues:</strong>
+                <p>
+                    {% if summaryOfCriticalIssues is empty %}
+                        n/a
+                    {% else %}
+                        {% for issue in summaryOfCriticalIssues %}
+                            <b>{{ loop.index }}. {{ issue.ticketId }}</b> - {{ issue.ticketName }} (<a href="{{ issueticketUrl }}">{{ issue.ticketUrl }}</a>)<br>
+                            {% if issue.comment %}
+                                {{ issue.comment }}
+                            {% endif %}
+                            <br>
+                        {% endfor %}
                     {% endif %}
-                    <br>
+                </p>
+            </div>
+            <div>
+                <strong>Done today:</strong>
+                {% for ticket in doneTicketsList %}
+                    <p>
+                        <b>{{ loop.index }}. {{ ticket.ticketId }}</b> - {{ ticket.ticketName }}
+                        (<a href="{{ ticket.ticketUrl }}">{{ ticket.ticketUrl }}</a>) - {{ ticket.timeSpent }}
+                    </p>
+                    <p>{{ ticket.comment|nl2br }}</p>
                 {% endfor %}
-            {% endif %}
-        </p>
-    </div>
-    <div>
-        <strong>Done today:</strong>
-        {% for ticket in doneTicketsList %}
-            <p>
-                <b>{{ loop.index }}. {{ ticket.ticketId }}</b> - {{ ticket.ticketName }}
-                    (<a href="{{ ticket.ticketUrl }}">{{ ticket.ticketUrl }}</a>) - {{ ticket.timeSpent }}
-            </p>
-            <p>{{ ticket.comment|nl2br }}</p>
-        {% endfor %}
-    </div>
-    <div>
-        <strong>Exceeded estimates:</strong>
-        {% for estimate in exceededEstimates %}
-            <p>{{ estimate }}</p>
-        {% endfor %}
-    </div>
-    <div>
-        <strong>Pending tasks:</strong>
-        <p>
-            {% for pending in pendingTasks %}
-                <b>{{ loop.index }}. {{ pending.ticketId }}</b> - {{ pending.ticketName }} (<a href="{{ pending.ticketUrl }}">{{ pending.ticketUrl }}</a>)<br>
-            {% endfor %}
-        </p>
-    </div>
-    <div>
-        <strong>Input from PM / Client Required:</strong>
-        {% if inputFromPmOrClient is empty %}
-            <p>n/a</p>
-        {% else %}
-            {% for input in inputFromPmOrClient%}
-                <p>{{ input }}</p>
-            {% endfor %}
-        {% endif %}
-    </div>
-    <div>
-        <p><b>Total time spent: {{ totalTimeSpent }}</b></p>
-    </div>
-</div>
+            </div>
+            <div>
+                <strong>Exceeded estimates:</strong>
+                {% for estimate in exceededEstimates %}
+                    <p>{{ estimate }}</p>
+                {% endfor %}
+            </div>
+            <div>
+                <strong>Pending tasks:</strong>
+                <p>
+                    {% for pending in pendingTasks %}
+                        <b>{{ loop.index }}. {{ pending.ticketId }}</b> - {{ pending.ticketName }} (<a href="{{ pending.ticketUrl }}">{{ pending.ticketUrl }}</a>)<br>
+                    {% endfor %}
+                </p>
+            </div>
+            <div>
+                <strong>Input from PM / Client Required:</strong>
+                {% if inputFromPmOrClient is empty %}
+                    <p>n/a</p>
+                {% else %}
+                    {% for input in inputFromPmOrClient%}
+                        <p>{{ input }}</p>
+                    {% endfor %}
+                {% endif %}
+            </div>
+            <div>
+                <p><b>Total time spent: {{ totalTimeSpent }}</b></p>
+            </div>
+        </div>
+    </body>
+</html>
