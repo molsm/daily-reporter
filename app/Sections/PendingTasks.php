@@ -40,9 +40,9 @@ class PendingTasks extends Section
         $data = [];
         $continue = true;
 
-        if ($this->io->ask('Fill pending tickets?', false)) {
+        if ($this->io->confirm('Fill pending tickets?', false)) {
             while ($continue) {
-                $ticketId = $this->io->ask('Provide ticket Id / Key', null, new JiraTicketValidator);
+                $ticketId = $this->io->ask('Provide ticket Id / Key: ', null, new JiraTicketValidator);
 
                 try {
                     $ticket = $this->client->getTicket($ticketId);

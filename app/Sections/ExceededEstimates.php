@@ -16,10 +16,10 @@ class ExceededEstimates extends Section
      */
     public function process(): array
     {
-        $data = [];
+        if ($this->io->confirm('Do you have exceeded estimates?', false)) {
+            $this->data[] = $this->io->ask('Write exceeded estimate', 'n/a');
+        }
 
-        $data[] = $this->io->ask('Write exceeded estimate', 'n/a');
-
-        return ['exceededEstimates' => $data];
+        return ['exceededEstimates' => $this->data];
     }
 }

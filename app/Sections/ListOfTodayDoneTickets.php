@@ -5,9 +5,10 @@ namespace App\Sections;
 use DailyReporter\Helper\Jira;
 use DailyReporter\Helper\Time;
 use DailyReporter\Jira\Client;
+use DailyReporter\Sections\AbstractSection;
 use Psr\Container\ContainerInterface;
 
-final class ListOfTodayDoneTickets extends \DailyReporter\Sections\AbstractSection
+class ListOfTodayDoneTickets extends AbstractSection
 {
     /**
      * @var string
