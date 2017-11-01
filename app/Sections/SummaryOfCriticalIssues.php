@@ -17,22 +17,6 @@ class SummaryOfCriticalIssues extends AbstractSection
     protected $sectionName = 'Summary of critical issue';
 
     /**
-     * @var Client
-     */
-    private $client;
-
-    /**
-     * PendingTasks constructor.
-     * @param ContainerInterface $container
-     * @param Client $client
-     */
-    public function __construct(ContainerInterface $container, Client $client)
-    {
-        parent::__construct($container);
-        $this->client = $client;
-    }
-
-    /**
      * @return array
      */
     public function process(): array
