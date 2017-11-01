@@ -1,72 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
 <html>
-    <head>
-        <style>
-            body {
-                font-family: SansSerif;
-            }
-        </style>
-    </head>
-    <body>
-        <div>
-            <p>Hello team,</p>
-            <div>
-                <strong>Summary of critical issues:</strong>
-                <p>
-                    {% if summaryOfCriticalIssues is empty %}
-                        n/a
-                    {% else %}
-                        {% for issue in summaryOfCriticalIssues %}
-                            <b>{{ loop.index }}. {{ issue.ticketId }}</b> - {{ issue.ticketName }} (<a href="{{ issueticketUrl }}">{{ issue.ticketUrl }}</a>)<br>
-                            {% if issue.comment %}
-                                {{ issue.comment }}
-                            {% endif %}
-                            <br>
-                        {% endfor %}
+<head></head>
+<body style="font-family: sans-serif; font-size: 13px;">
+<div style="font-family: sans-serif; font-size: 13px;">
+    <p style="font-family: sans-serif; font-size: 13px;">Hello team,</p>
+    <div style="font-family: sans-serif; font-size: 13px;">
+        <strong style="font-family: sans-serif; font-size: 13px;">Summary of critical issues:</strong>
+        <p style="font-family: sans-serif; font-size: 13px;">
+            {% if summaryOfCriticalIssues is empty %}
+                n/a
+            {% else %}
+                {% for issue in summaryOfCriticalIssues %}
+                    <b style="font-family: sans-serif; font-size: 13px;">{{ loop.index }}. {{ issue.ticketId }}</b> - {{ issue.ticketName }} (<a href="{{ issue.ticketUrl }}">{{ issue.ticketUrl }}</a>)<br>
+                    {% if issue.comment %}
+                        {{ issue.comment }}
                     {% endif %}
-                </p>
-            </div>
-            <div>
-                <strong>Done today:</strong>
-                {% for ticket in doneTicketsList %}
-                    <p>
-                        <b>{{ loop.index }}. {{ ticket.ticketId }}</b> - {{ ticket.ticketName }}
-                        (<a href="{{ ticket.ticketUrl }}">{{ ticket.ticketUrl }}</a>) - {{ ticket.timeSpent }}
-                    </p>
-                    <p>{{ ticket.comment|nl2br }}</p>
+                    <br>
                 {% endfor %}
-            </div>
-            <div>
-                <strong>Exceeded estimates:</strong>
-                {% for estimate in exceededEstimates %}
-                    <p>{{ estimate }}</p>
-                {% endfor %}
-            </div>
-            <div>
-                <strong>Pending tasks:</strong>
-                <p>
-                    {% for pending in pendingTasks %}
-                        <b>{{ loop.index }}. {{ pending.ticketId }}</b> - {{ pending.ticketName }} (<a href="{{ pending.ticketUrl }}">{{ pending.ticketUrl }}</a>)<br>
-                    {% endfor %}
-                </p>
-            </div>
-            <div>
-                <strong>Input from PM / Client Required:</strong>
-                {% if inputFromPmOrClient is empty %}
-                    <p>n/a</p>
-                {% else %}
-                    {% for input in inputFromPmOrClient%}
-                        <p>{{ input }}</p>
-                    {% endfor %}
-                {% endif %}
-            </div>
-            <div>
-                <p>
-                    <b>Total time spent: {{ totalTimeSpent }}</b><br/>
-                    {% if pendingTime > 0 %}
-                        <b>Approximate amount of pending tasks in hours: {{ pendingTime }}</b>
-                    {% endif %}
-                </p>
-            </div>
-        </div>
-    </body>
+            {% endif %}
+        </p>
+    </div>
+    <div style="font-family: sans-serif; font-size: 13px;">
+        <strong style="font-family: sans-serif; font-size: 13px;">Done today:</strong>
+        {% for ticket in doneTicketsList %}
+            <p style="font-family: sans-serif; font-size: 13px;">
+                <b style="font-family: sans-serif; font-size: 13px;">{{ loop.index }}. {{ ticket.ticketId }}</b> - {{ ticket.ticketName }}
+                (<a href="{{ ticket.ticketUrl }}">{{ ticket.ticketUrl }}</a>) - {{ ticket.timeSpent }}
+            </p>
+            <p style="font-family: sans-serif; font-size: 13px;">{{ ticket.comment|nl2br }}</p>
+        {% endfor %}
+    </div>
+    <div style="font-family: sans-serif; font-size: 13px;">
+        <strong style="font-family: sans-serif; font-size: 13px;">Exceeded estimates:</strong>
+        {% for estimate in exceededEstimates %}
+            <p style="font-family: sans-serif; font-size: 13px;">{{ estimate }}</p>
+        {% endfor %}
+    </div>
+    <div style="font-family: sans-serif; font-size: 13px;">
+        <strong style="font-family: sans-serif; font-size: 13px;">Pending tasks:</strong>
+        <p style="font-family: sans-serif; font-size: 13px;">
+            {% for pending in pendingTasks %}
+                <b style="font-family: sans-serif; font-size: 13px;">{{ loop.index }}. {{ pending.ticketId }}</b> - {{ pending.ticketName }} (<a href="{{ pending.ticketUrl }}">{{ pending.ticketUrl }}</a>)<br>
+            {% endfor %}
+        </p>
+    </div>
+    <div style="font-family: sans-serif; font-size: 13px;">
+        <strong style="font-family: sans-serif; font-size: 13px;">Input from PM / Client Required:</strong>
+        {% if inputFromPmOrClient is empty %}
+            <p style="font-family: sans-serif; font-size: 13px;">n/a</p>
+        {% else %}
+            {% for input in inputFromPmOrClient %}
+                <p style="font-family: sans-serif; font-size: 13px;">{{ input }}</p>
+            {% endfor %}
+        {% endif %}
+    </div>
+    <div style="font-family: sans-serif; font-size: 13px;">
+        <p style="font-family: sans-serif; font-size: 13px;">
+            <b style="font-family: sans-serif; font-size: 13px;">Total time spent: {{ totalTimeSpent }}</b><br>
+            {% if pendingTime > 0 %}
+            <b style="font-family: sans-serif; font-size: 13px;">Approximate amount of pending tasks in hours: {{ pendingTime }}</b>
+            {% endif %}
+        </p>
+    </div>
+</div>
+</body>
 </html>
