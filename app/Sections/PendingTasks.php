@@ -4,6 +4,7 @@ namespace App\Sections;
 
 use DailyReporter\Exception\CanNotRetrieveDataFromJira;
 use DailyReporter\Helper\Jira;
+use DailyReporter\Helper\Time;
 use DailyReporter\Sections\AbstractSection as Section;
 use DailyReporter\Validator\JiraTicket as JiraTicketValidator;
 
@@ -19,6 +20,7 @@ class PendingTasks extends Section
      */
     public function process(): array
     {
+        $pendingTime = 0;
         $continue = true;
 
         if ($this->io->confirm('Fill pending tickets?', false)) {
@@ -38,6 +40,11 @@ class PendingTasks extends Section
                     'ticketUrl' => Jira::getTicketUrl($ticket['key'])
                 ];
 
+                $pendingTime += Jira::getTicketPendingTimeInSeconds(
+                    $ticket['fields']['timetracking']['originalEstimateSeconds'],
+                    $ticket['fields']['timetracking']['timeSpentSeconds']
+                );
+
                 $this->io->title('Current pending tickets');
                 $this->showData($this->data);
 
@@ -45,7 +52,7 @@ class PendingTasks extends Section
             }
         }
 
-        return ['pendingTasks' => $this->data];
+        return ['pendingTasks' => $this->data, 'pendingTime' => Time::convertSecondsIntoStringWithHour($pendingTime)];
     }
 
     /**

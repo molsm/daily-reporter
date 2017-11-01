@@ -60,7 +60,12 @@
                 {% endif %}
             </div>
             <div>
-                <p><b>Total time spent: {{ totalTimeSpent }}</b></p>
+                <p>
+                    <b>Total time spent: {{ totalTimeSpent }}</b><br/>
+                    {% if pendingTime > 0 %}
+                        <b>Approximate amount of pending tasks in hours: {{ pendingTime }}</b>
+                    {% endif %}
+                </p>
             </div>
         </div>
     </body>
